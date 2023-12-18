@@ -1,4 +1,4 @@
-# Introducere în Robotică: Cronometru
+# Introducere în Robotică: MatrixGame
 
 ## Obiectiv
 Crearea unui joc care să se desfășoare pe matricea de 8x8. Jocul trebuie să conțină (cel puțin) elementele din lista următoare: bombe/gloanțe, pereți și un jucător. Harta trebuie să fie suficient de complexă (pereții să acopere cel puțin 50% din suprafața acesteia), iar experiența de joc trebuie să fie una fluentă și satisfăcătoare pentru utilizator.
