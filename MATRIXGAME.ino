@@ -132,7 +132,7 @@ unsigned long lastJoystickUpdateTime = 0;
 const long joystickUpdateInterval = 200;
 
 unsigned long lastButtonPressTime = 0;  // Declare this globally
-const long debounceDelay = 200;         // Debounce delay in milliseconds
+const long debounceDelay = 1050;         // Debounce delay in milliseconds
 
 
 
@@ -533,6 +533,7 @@ void loop() {
       animateFallingBlocks();
       break;
     case WON:
+      turnOffMatrix();
       won();
       break;
     case FINAL:
@@ -933,26 +934,54 @@ void movePlayer(int dx, int dy) {
   }
 }
 
+// Global variables for the won function
+int wonBlockRow = matrixSize - 1;
+int wonBlockCol = 0;
+unsigned long lastWonBlockTime = 0;
+
+
+unsigned long lastLedOffTime = 0; // Stores the last time an LED was turned off
+int lastLedX = -1;                // Stores the last x-coordinate of the LED that was lit
+
+
+// Adjusted intervals for a slower animation
+const long wonBlockInterval = 100; // Interval for each block in the winning animation
+const long ledOffInterval = 100;   // Time to keep each LED lit before turning off
+
 void won() {
-  const int numberOfFireworks = 40;  // Total number of fireworks to display
-  const int displayTime = 100;       // Time each firework is displayed in milliseconds
-  lc.clearDisplay(0);
-  for (int i = 0; i < numberOfFireworks; i++) {
-    int x = random(matrixSize);
-    int y = random(matrixSize);
+  unsigned long currentMillis = millis();
 
-    // Light up a random LED
-    lc.setLed(0, x, y, true);
-    delay(displayTime);
+  // Check if the winning animation is still in progress
+  if (wonBlockRow >= 0) {
+    // Check if it's time to update the block animation
+    if (currentMillis - lastWonBlockTime > wonBlockInterval) {
+      lastWonBlockTime = currentMillis; // Update the last time we changed the block
 
-    // Turn off the LED
-    lc.setLed(0, x, y, false);
+      // Light up a random LED in the current row
+      int x = random(matrixSize);
+      lc.setLed(0, wonBlockRow, x, true);
+      lastLedOffTime = currentMillis;  // Record the time when LED was turned on
+      lastLedX = x;  // Record the LED's x-coordinate
 
-    delay(50);
+      // Prepare to move to the next row in the next iteration
+      wonBlockRow--;
+    }
+
+    // Check if it's time to turn off the LED
+    if (currentMillis - lastLedOffTime > ledOffInterval) {
+      lc.setLed(0, wonBlockRow + 1, lastLedX, false); // Turn off the last LED lit
+    }
+  } else {
+    // Animation complete, change state
+    turnOffMatrix(); // Clear the matrix
+    currentState = FINAL;
+    wonBlockRow = matrixSize - 1; // Reset for the next win animation
   }
-  currentState = FINAL;
-  lcd.clear();
 }
+
+
+
+
 
 
 void updateVisibleArea() {
@@ -1091,7 +1120,7 @@ void handleSettingsInput() {
     // Debounce logic for button press
     if (buttonPressed && (currentMillis - lastButtonPressTime > debounceDelay)) {
       lastButtonPressTime = currentMillis;
-
+      tone(buzzerPin, 1000,200);
       if (!inAdjustmentMode) {
         if (settingsMenuItem != settingsMenuSize - 1) {  // 'Back' is selected
           inAdjustmentMode = true;
@@ -1108,7 +1137,7 @@ void handleSettingsInput() {
           selectGameMapBasedOnDifficulty();
           currentState = MENU;
           updateMenu();
-          delay(300);
+          //delay(300);
           return;
         }
       } else {
@@ -1168,7 +1197,7 @@ void handleHighScoresInput() {
 
   if (buttonPressed && (currentMillis - lastButtonPressTime > debounceDelay)) {
     lastButtonPressTime = currentMillis;
-
+    tone(buzzerPin,1000,200);
     if (inViewingMode) {
       // Exit viewing mode
       inViewingMode = false;
