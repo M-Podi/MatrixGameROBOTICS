@@ -950,7 +950,7 @@ const long ledOffInterval = 100;   // Time to keep each LED lit before turning o
 
 void won() {
   unsigned long currentMillis = millis();
-
+  currentGameMap.mapData[playerY * currentGameMap.mapSize + playerX] = 0;  // Clear old position
   // Check if the winning animation is still in progress
   if (wonBlockRow >= 0) {
     // Check if it's time to update the block animation
