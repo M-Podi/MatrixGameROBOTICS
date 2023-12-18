@@ -15,8 +15,6 @@ Funcționalitățile pentru fiecare componentă sunt următoarele:
 - **Buzzer**: Două la număr, unul fiind folosit pentru a oferi un feedback auditiv la acțiunile jucătorului, iar al doilea pentru soundtrack-ul jocului.
 - **Joystick**: Este utilizat pentru a naviga meniul jocului, dar și pentru a controla acțiunile player-ului pe hartă în timpul jocului.
 
-- **Rezistențe și condensatori**
-
 
 ### Funcționare
 
