@@ -7,8 +7,6 @@ Crearea unui joc care să se desfășoare pe matricea de 8x8. Jocul trebuie să 
 
 ### Configurație
 
-![Centered Image](../../media/Project5CircuitView.jpeg)
-
 Componentele includ o matrice cu 8x8 led-uri, circuitul integrat MAX7219, un joystick, un buzzer, un display lcd, două condensatoare, alături de rezistorii și firele necesare. 
 Funcționalitățile pentru fiecare componentă sunt următoarele:
 - **MAX7219**: Un chip care ajută ușurează procesul de afișare pe matrice.
