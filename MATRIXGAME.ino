@@ -1,4 +1,3 @@
-
 #include <LiquidCrystal.h>
 #include "LedControl.h"
 #include <EEPROM.h>
@@ -346,7 +345,7 @@ unsigned long introStartTime;
 
 State currentState;
 
-const char aboutText[] PROGMEM = "This is a maze navigation game, utilizing an 8x8 LED matrix. This game was developed by Podi (github:)";
+const char aboutText[] PROGMEM = "This is a maze navigation game, utilizing an 8x8 LED matrix. This game was developed by Podi (github:https://github.com/M-Podi)";
 int aboutTextPosition = 0;  // Current scroll position in the about text
 
 const char howToPlayText[] PROGMEM = "First of all, go into the settings menu and set the desired brightness and difficulty for the game. Make sure to change your username so your highscores can be registered. Players are represented by a blinking LED, navigating through a maze of solid and breakable walls. The goal is to find the shortest route to the maze's end. Pressing the joystick will fire a projectile that is able to break the weak walls in your path";  // Add your actual how-to-play instructions here
