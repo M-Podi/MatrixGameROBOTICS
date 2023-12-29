@@ -46,37 +46,35 @@ GameMap currentGameMap;
 
 
 // Define the map
-const int largeMapSize = 16;  // Size of the larger map
+const int largeMapSize = 14;  // Size of the larger map
 byte largeGameMap[largeMapSize][largeMapSize] = {
-  { 0, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-  { 0, 3, 3, 3, 3, 0, 3, 1, 1, 0, 3, 3, 0, 3, 0, 1 },
-  { 0, 0, 3, 3, 0, 0, 1, 0, 1, 3, 3, 1, 3, 1, 1, 1 },
-  { 1, 3, 1, 1, 0, 1, 3, 3, 0, 3, 1, 1, 1, 1, 1, 1 },
-  { 1, 0, 0, 1, 0, 0, 1, 1, 1, 3, 0, 1, 0, 0, 1, 1 },
-  { 1, 1, 0, 1, 3, 3, 1, 0, 0, 0, 3, 3, 0, 1, 3, 1 },
-  { 1, 0, 0, 1, 1, 3, 0, 1, 3, 1, 3, 3, 1, 1, 3, 1 },
-  { 1, 0, 1, 0, 3, 1, 3, 1, 1, 3, 1, 1, 1, 0, 1, 1 },
-  { 1, 3, 0, 1, 1, 0, 1, 1, 3, 0, 0, 0, 0, 3, 1, 1 },
-  { 1, 0, 3, 3, 0, 1, 3, 0, 0, 0, 1, 3, 1, 0, 0, 1 },
-  { 1, 1, 0, 1, 1, 3, 0, 3, 3, 1, 3, 3, 0, 3, 0, 1 },
-  { 1, 0, 3, 3, 1, 3, 3, 3, 0, 3, 1, 1, 1, 1, 3, 1 },
-  { 1, 0, 1, 1, 3, 0, 0, 0, 0, 0, 1, 0, 3, 3, 1, 0 },
-  { 1, 3, 0, 1, 0, 0, 3, 1, 3, 3, 0, 0, 1, 3, 0, 0 },
-  { 1, 0, 0, 3, 3, 3, 3, 3, 0, 0, 0, 0, 3, 3, 0, 0 },
-  { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 }
+  { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+  { 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1 },
+  { 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1 },
+  { 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1 },
+  { 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1 },
+  { 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1 },
+  { 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1 },
+  { 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1 },
+  { 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1 },
+  { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1 },
+  { 1, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1 },
+  { 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1 },
+  { 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0 },
+  { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 }
 };
 
 const int mediumMapSize = 10;
 byte mediumGameMap[mediumMapSize][mediumMapSize] = {
   { 0, 0, 1, 1, 1, 1, 1, 1, 1, 1 },
-  { 0, 0, 0, 1, 0, 0, 1, 0, 3, 1 },
-  { 1, 0, 0, 3, 3, 0, 0, 3, 0, 1 },
-  { 1, 1, 3, 0, 1, 1, 1, 1, 3, 1 },
-  { 1, 0, 0, 3, 3, 1, 3, 1, 1, 1 },
-  { 1, 0, 3, 0, 1, 1, 0, 3, 1, 1 },
-  { 1, 3, 3, 3, 1, 0, 1, 0, 1, 1 },
-  { 1, 3, 1, 0, 3, 0, 1, 3, 3, 1 },
-  { 1, 1, 0, 3, 1, 3, 0, 0, 3, 0 },
+  { 0, 0, 0, 1, 0, 0, 1, 0, 0, 1 },
+  { 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+  { 1, 1, 0, 0, 1, 1, 1, 1, 0, 1 },
+  { 1, 0, 0, 0, 0, 1, 0, 1, 1, 1 },
+  { 1, 0, 0, 0, 1, 1, 0, 0, 1, 1 },
+  { 1, 0, 0, 0, 1, 0, 1, 0, 1, 1 },
+  { 1, 0, 1, 0, 0, 0, 1, 0, 0, 1 },
+  { 1, 1, 0, 0, 1, 0, 0, 0, 0, 0 },
   { 1, 1, 1, 1, 1, 1, 1, 1, 0, 0 }
 };
 
@@ -88,13 +86,12 @@ byte smallGameMap[smallMapSize][smallMapSize] = {
   { 0, 0, 1, 1, 1, 1, 1, 1 },
   { 0, 0, 1, 0, 0, 1, 0, 1 },
   { 1, 0, 1, 0, 1, 1, 0, 1 },
-  { 1, 3, 1, 1, 0, 0, 1, 1 },
+  { 1, 0, 1, 1, 0, 0, 1, 1 },
   { 1, 0, 1, 0, 0, 0, 1, 1 },
   { 1, 0, 0, 0, 0, 1, 0, 1 },
-  { 1, 1, 0, 1, 0, 0, 3, 0 },
+  { 1, 1, 0, 1, 0, 0, 0, 0 },
   { 1, 1, 1, 1, 1, 1, 0, 0 }
 };
-
 
 
 int currentMapSize = 0;
@@ -118,7 +115,7 @@ const long wallInterval = 1;
 bool wallLedState = false;
 
 // LCD pins
-const int rs = A2, en = 8, d4 = 7, d5 = 3, d6 = 5, d7 = 4;
+const int rs = A2, en = 8, d4 = 7, d5 = 3, d6 = A3, d7 = 4;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
 // Joystick pins
@@ -132,13 +129,12 @@ unsigned long lastJoystickUpdateTime = 0;
 const long joystickUpdateInterval = 200;
 
 unsigned long lastButtonPressTime = 0;  // Declare this globally
-const long debounceDelay = 1050;         // Debounce delay in milliseconds
 
 
 
 int menuItem = 0;
-const int menuSize = 4;
-const char* menuOptions[menuSize] = { "Start", "Highest Scores", "Settings", "About" };
+const int menuSize = 5;
+const char* menuOptions[menuSize] = { "Start", "Highest Scores", "Settings", "About", "How To Play"};
 
 int topItem = 0;
 
@@ -187,7 +183,7 @@ int highScoreAddress = 0;  // Starting address in EEPROM for high score
 const int lcdBrightnessAddress = 30;     // EEPROM address for LCD brightness
 const int matrixBrightnessAddress = 60;  // EEPROM address for Matrix brightness
 const int difficultyAddress = 90;        // EEPROM address for difficulty
-const int songIndexAddress = 125;  // EEPROM address for song index
+const int songIndexAddress = 125;        // EEPROM address for song index
 
 
 int lcdBrightness = 90;    // Default LCD brightness
@@ -213,7 +209,7 @@ int easyHighScores[topScoresCount] = { INT8_MAX, INT8_MAX, INT8_MAX };
 int mediumHighScores[topScoresCount] = { INT8_MAX, INT8_MAX, INT8_MAX };
 int hardHighScores[topScoresCount] = { INT8_MAX, INT8_MAX, INT8_MAX };
 
-const int easyHighScoreAddress = 100;    // Starting EEPROM address for easy scores
+const int easyHighScoreAddress = 100;  // Starting EEPROM address for easy scores
 const int mediumHighScoreAddress = 106;
 const int hardHighScoreAddress = 112;
 const int playerNameAddress = 120;
@@ -320,7 +316,7 @@ void updateBullets() {
 }
 
 
-const int buzzerPin = 13;
+const int buzzerPin = 5;
 const int buzzerPin2 = 9;
 
 
@@ -336,7 +332,8 @@ enum State { MENU,
              FINAL,
              SETTINGS_DIFFICULTY,
              INTRO,
-             ABOUT };
+             ABOUT,
+             TUTORIAL };
 
 int difficulty = 0;  // Default difficulty level
 const char* difficulties[3] = { "Easy", "Medium", "Hard" };
@@ -348,8 +345,11 @@ unsigned long introStartTime;
 
 State currentState;
 
-String aboutText = "This is a maze navigation game, utilizing an 8x8 LED matrix. Players are represented by a blinking LED, navigating through a maze of solid and breakable walls. The goal is to find the shortest route to the maze's end.";
+const char aboutText[] PROGMEM = "This is a maze navigation game, utilizing an 8x8 LED matrix. This game was developed by Podi (github:)";
 int aboutTextPosition = 0;  // Current scroll position in the about text
+
+const char howToPlayText[] PROGMEM = "First of all, go into the settings menu and set the desired brightness and difficulty for the game. Make sure to change your username so your highscores can be registered. Players are represented by a blinking LED, navigating through a maze of solid and breakable walls. The goal is to find the shortest route to the maze's end. Pressing the joystick will fire a projectile that is able to break the weak walls in your path";  // Add your actual how-to-play instructions here
+int howToPlayPosition = 0;
 
 int selectedChars[5] = { 65, 65, 65, 65, 65 };  // ASCII values for 'A'
 int activeCharIndex = 0;                        // Index of the currently active letter
@@ -358,14 +358,14 @@ int activeCharIndex = 0;                        // Index of the currently active
 
 // Define the tempos (beats per minute)
 const int tempo1 = 126;  // Tempo for song 1
-const int tempo2 = 144;  // Tempo for song 2
+const int tempo2 = 113;  // Tempo for song 2
 
 // Melody 1: Frequencies stored in PROGMEM
 const int melody1[] PROGMEM = { 659, 622, 659, 622, 659, 493, 587, 523, 440, 261, 329, 440, 493, 329, 415, 493, 523, 329, 659, 622, 659, 622, 659, 493, 587, 523, 440, 261, 329, 440, 493, 261, 523, 493, 440 };
 const int melodyLength1 = sizeof(melody1) / sizeof(melody1[0]);
 
 // Melody 2: Frequencies stored in PROGMEM
-const int melody2[] PROGMEM = { 369, 523, 622, 622, 369, 369, 523, 622, 622, 369, 587, 698, 698, 466, 587, 698, 932, 830, 783, 622, 523, 523, 783, 783, 622, 523, 523, 587, 466, 391, 391, 587, 587, 466, 391, 391 };
+const int melody2[] PROGMEM = { 494, 494, 554, 622, 622, 622, 494, 830, 830, 740, 740, 622, 622, 622, 494, 830, 830, 740, 740, 622, 622, 622, 494, 554, 622, 554, 494, 370, 370, 370, 370 };
 const int melodyLength2 = sizeof(melody2) / sizeof(melody2[0]);
 
 // Variables to control the melody playback
@@ -376,6 +376,11 @@ bool playingNote = false;
 unsigned long noteStopTime = 0;
 const unsigned long noteGap = 5;  // gap between notes in milliseconds
 
+
+const int nameLength = 5;           // Length of the player's name
+const int easyNameAddress = 200;    // Starting EEPROM address for easy scores' names
+const int mediumNameAddress = 300;  // Starting EEPROM address for medium scores' names
+const int hardNameAddress = 400;    // Starting EEPROM address for hard scores' names
 
 
 void playSong() {
@@ -428,11 +433,25 @@ void selectGameMapBasedOnDifficulty() {
       break;
   }
 
+  // Randomising the breakable walls of the current map
+  for (int i = 2; i <= currentGameMap.mapSize - 2; i++) {
+    for (int j = 2; j <= currentGameMap.mapSize - 2; j++) {
+      int index = i * currentGameMap.mapSize + j;
+
+      if (currentGameMap.mapData[index] == 0 && random(2) == 0) {  // Randomizing with 50% probability
+        currentGameMap.mapData[index] = 3;
+      }
+    }
+  }
+
+  currentGameMap.mapData[(currentGameMap.mapSize - 1) * currentGameMap.mapSize + (currentGameMap.mapSize - 1)] = 0;
+
   // Reset player position and winning position for the new map
   playerX = 0;
   playerY = 0;
   winningPosX = currentGameMap.mapSize - 1;
   winningPosY = currentGameMap.mapSize - 1;
+  updateVisibleArea();
 }
 
 void intro() {
@@ -451,6 +470,8 @@ void intro() {
 }
 
 void setup() {
+  randomSeed(analogRead(0));
+
   Serial.begin(9600);
 
   EEPROM.get(lcdBrightnessAddress, lcdBrightness);
@@ -464,6 +485,9 @@ void setup() {
   difficulty = constrain(difficulty, 0, 2);
   songIndex = constrain(songIndex, 0, 2);
 
+  pinMode(buzzerPin, OUTPUT);
+  pinMode(buzzerPin2, OUTPUT);
+
 
   analogWrite(lcdBacklightPin, lcdBrightness);
   lc.setIntensity(0, matrixBrightness);
@@ -476,9 +500,37 @@ void setup() {
   }
 
   for (int i = 0; i < topScoresCount; i++) {
+    // Read scores for each difficulty level
     easyHighScores[i] = readHighScoreFromEEPROM(easyHighScoreAddress + i * sizeof(int));
     mediumHighScores[i] = readHighScoreFromEEPROM(mediumHighScoreAddress + i * sizeof(int));
     hardHighScores[i] = readHighScoreFromEEPROM(hardHighScoreAddress + i * sizeof(int));
+
+    // Declare arrays to hold names
+    char easyName[6], mediumName[6], hardName[6];      // Assuming names are 5 characters long
+    easyName[5] = mediumName[5] = hardName[5] = '\0';  // Null terminate strings
+
+    // Read names associated with each high score
+    for (int j = 0; j < 5; j++) {
+      easyName[j] = EEPROM.read(easyNameAddress + i * 5 + j);
+      mediumName[j] = EEPROM.read(mediumNameAddress + i * 5 + j);
+      hardName[j] = EEPROM.read(hardNameAddress + i * 5 + j);
+    }
+
+    // Print scores and names to Serial monitor
+    Serial.print("Easy " + String(i + 1) + ": Score = ");
+    Serial.print(easyHighScores[i]);
+    Serial.print(", Name = ");
+    Serial.println(easyName);
+
+    Serial.print("Medium " + String(i + 1) + ": Score = ");
+    Serial.print(mediumHighScores[i]);
+    Serial.print(", Name = ");
+    Serial.println(mediumName);
+
+    Serial.print("Hard " + String(i + 1) + ": Score = ");
+    Serial.print(hardHighScores[i]);
+    Serial.print(", Name = ");
+    Serial.println(hardName);
   }
 
   currentState = INTRO;  // Starting state
@@ -496,6 +548,7 @@ void setup() {
   lc.setIntensity(0, 8);
   lc.clearDisplay(0);
   pinMode(buzzerPin, OUTPUT);
+  pinMode(buzzerPin2, OUTPUT);
   // Display initial menu
   largeGameMap[playerY][playerX] = 2;
   mediumGameMap[playerY][playerX] = 2;
@@ -508,11 +561,25 @@ void setup() {
   winningPosY = currentGameMap.mapSize - 1;
 }
 
+unsigned long lastDebounceTime = 0;
+const long debounceDelay = 300;
+bool buttonPressed = false;
 
-
+unsigned long buzzerStartTime;             // Record when the buzzer starts
+bool isBuzzerActive = false;               // Track if the buzzer is currently active
+const unsigned long buzzerDuration = 200;  // Duration to keep the buzzer on in milliseconds
 
 void loop() {
   playSong();
+  int reading = digitalRead(joySW);  // read the state of the switch into a local variable
+
+  if ((millis() - lastDebounceTime) > debounceDelay && reading == LOW) {
+    lastDebounceTime = millis();
+    buttonPressed = true;
+    analogWrite(buzzerPin, 128);  // Write a mid-range value to buzzer
+    buzzerStartTime = millis();
+    isBuzzerActive = true;
+  }
   switch (currentState) {
     case INTRO:
       intro();
@@ -542,6 +609,13 @@ void loop() {
     case ABOUT:
       aboutSection();
       break;
+    case TUTORIAL:
+      howToPlaySection();
+      break;
+  }
+  if (isBuzzerActive && (millis() - buzzerStartTime > buzzerDuration)) {
+    analogWrite(buzzerPin, 0);  // Turn off the buzzer
+    isBuzzerActive = false;     // Update buzzer state
   }
 }
 
@@ -550,89 +624,121 @@ bool hasUpdatedHighScore = false;
 void final() {
   int* currentScores;
   int scoreAddress;
+  int nameAddress;
 
   switch (difficulty) {
     case 0:
       currentScores = easyHighScores;
       scoreAddress = easyHighScoreAddress;
+      nameAddress = easyNameAddress;
       break;
     case 1:
       currentScores = mediumHighScores;
       scoreAddress = mediumHighScoreAddress;
+      nameAddress = mediumNameAddress;
       break;
     case 2:
       currentScores = hardHighScores;
       scoreAddress = hardHighScoreAddress;
+      nameAddress = hardNameAddress;
       break;
   }
 
   if (!hasUpdatedHighScore) {
-    // Find where to insert the new score
-    int insertAt = -1;
+    int insertAt = topScoresCount;  // Assume insertion at the end if no better place is found
     for (int i = 0; i < topScoresCount; i++) {
-      if (elapsedTime < currentScores[i]) {
+      if (elapsedTime < currentScores[i] || currentScores[i] == 0) {  // Also consider if the score is 0
         insertAt = i;
         break;
       }
     }
 
-    // Insert new score and shift down others
-    if (insertAt != -1) {
-      for (int i = topScoresCount - 1; i > insertAt; i--) {
-        currentScores[i] = currentScores[i - 1];
+    // Shift down scores and names
+    for (int i = topScoresCount - 1; i > insertAt; i--) {
+      currentScores[i] = currentScores[i - 1];
+      for (int j = 0; j < nameLength; j++) {
+        char ch = EEPROM.read(nameAddress + (i - 1) * nameLength + j);
+        EEPROM.write(nameAddress + i * nameLength + j, ch);
       }
-      currentScores[insertAt] = elapsedTime;
     }
 
-    // Write updated scores to EEPROM and display them
+    if (insertAt < topScoresCount) {
+      // Insert new score
+      currentScores[insertAt] = elapsedTime;
+      // Insert new name
+      for (int j = 0; j < nameLength; j++) {
+        EEPROM.write(nameAddress + insertAt * nameLength + j, selectedChars[j]);
+      }
+    }
+
+    // Write updated scores to EEPROM
     for (int i = 0; i < topScoresCount; i++) {
       writeHighScoreToEEPROM(scoreAddress + i * sizeof(int), currentScores[i]);
+    }
+
+    // Display the updated scores
+    for (int i = 0; i < topScoresCount; i++) {
       Serial.print("Updated Score ");
       Serial.print(i + 1);
       Serial.print(": ");
       Serial.println(currentScores[i]);
     }
+
     hasUpdatedHighScore = true;
   }
 
   // Display the score on the LCD
-
   lcd.setCursor(0, 0);
   lcd.print("Score obtained:");
   lcd.setCursor(0, 1);
   lcd.print(elapsedTime);
+
+  // Handle joystick input to return to the main menu
   unsigned long currentMillis = millis();
   if (currentMillis - lastJoystickUpdateTime > joystickUpdateInterval) {
-    int yValue = analogRead(joyY);
-    bool buttonPressed = !digitalRead(joySW);
-
-    // Check if joystick button is pressed to return to the main menu
     if (buttonPressed) {
-      tone(buzzerPin, 1000, 200);
       hasUpdatedHighScore = false;
       currentState = MENU;
       updateMenu();
+      buttonPressed = false;
     }
-
     lastJoystickUpdateTime = currentMillis;
   }
 }
 
 
+
 void aboutSection() {
+  char lineBuffer[17];  // Buffer to hold a line of text (16 characters + null terminator)
   lcd.setCursor(0, 0);
   lcd.print("About Section:");
+
+  // Ensure safe range for substring extraction
+  int lengthToRead = min(sizeof(lineBuffer) - 1, strlen_P(aboutText) - aboutTextPosition);
+
+  // Ensure the position does not go out of bounds
+  aboutTextPosition = max(0, min(aboutTextPosition, (int)strlen_P(aboutText) - 16));
+
+  // Copy the required substring into lineBuffer
+  if (lengthToRead > 0) {
+    strncpy_P(lineBuffer, aboutText + aboutTextPosition, lengthToRead);
+    lineBuffer[lengthToRead] = '\0';  // Ensure null termination
+  } else {
+    lineBuffer[0] = '\0';  // If no valid length, ensure buffer is an empty string
+  }
+
   lcd.setCursor(0, 1);
-  lcd.print(aboutText.substring(aboutTextPosition, aboutTextPosition + 16));
+  lcd.print(lineBuffer);  // Print the line from the buffer
+
   unsigned long currentMillis = millis();
   if (currentMillis - lastJoystickUpdateTime > joystickUpdateInterval) {
     int yValue = analogRead(joyY);
-    bool buttonPressed = !digitalRead(joySW);
 
     // Check if joystick button is pressed to return to the main menu
     if (buttonPressed) {
       currentState = MENU;
       updateMenu();
+      buttonPressed = false;
     }
 
     // Scroll up
@@ -640,14 +746,45 @@ void aboutSection() {
       aboutTextPosition--;
     }
     // Scroll down
-    else if (yValue > 700 && aboutTextPosition < aboutText.length() - 16) {
+    else if (yValue > 700 && aboutTextPosition < strlen_P(aboutText) - 16) {
       aboutTextPosition++;
     }
-    if (buttonPressed && (currentMillis - lastButtonPressTime > debounceDelay)) {
-      lastButtonPressTime = currentMillis;  // Update last button press time
-      tone(buzzerPin, 1000, 200);
+    lastJoystickUpdateTime = currentMillis;
+  }
+}
+
+void howToPlaySection() {
+  char lineBuffer[17];  // Buffer to hold a line of text (16 characters + null terminator)
+  lcd.setCursor(0, 0);
+  lcd.print("How to Play:");
+
+  int lengthToRead = min(sizeof(lineBuffer) - 1, strlen_P(howToPlayText) - howToPlayPosition);
+  howToPlayPosition = max(0, min(howToPlayPosition, (int)strlen_P(howToPlayText) - 16));
+
+  if (lengthToRead > 0) {
+    strncpy_P(lineBuffer, howToPlayText + howToPlayPosition, lengthToRead);
+    lineBuffer[lengthToRead] = '\0';  // Ensure null termination
+  } else {
+    lineBuffer[0] = '\0';  // If no valid length, ensure buffer is an empty string
+  }
+
+  lcd.setCursor(0, 1);
+  lcd.print(lineBuffer);  // Print the line from the buffer
+
+  unsigned long currentMillis = millis();
+  if (currentMillis - lastJoystickUpdateTime > joystickUpdateInterval) {
+    int yValue = analogRead(joyY);
+
+    if (buttonPressed) {
       currentState = MENU;
       updateMenu();
+      buttonPressed = false;
+    }
+
+    if (yValue < 300 && howToPlayPosition > 0) {
+      howToPlayPosition--;
+    } else if (yValue > 700 && howToPlayPosition < strlen_P(howToPlayText) - 16) {
+      howToPlayPosition++;
     }
     lastJoystickUpdateTime = currentMillis;
   }
@@ -660,7 +797,6 @@ void Menu() {
   // Check if the joystick debounce interval has passed
   if (currentMillis - lastJoystickUpdateTime > joystickUpdateInterval) {
     int yValue = analogRead(joyY);
-    bool buttonPressed = !digitalRead(joySW);  // Inverted logic due to pull-up
 
     // Joystick navigation: Up
     if (yValue < 300) {
@@ -681,7 +817,7 @@ void Menu() {
 
     // Select menu item
     if (buttonPressed) {
-      tone(buzzerPin, 1000, 200);
+      buttonPressed = false;
       switch (menuItem) {
         case 0:
           currentState = STARTING;  // Start the game
@@ -701,6 +837,9 @@ void Menu() {
           currentState = ABOUT;
           aboutTextPosition = 0;  // Reset scroll position
           break;
+        case 4:
+          currentState = TUTORIAL;
+          howToPlayPosition = 0;
       }
     }
     lastJoystickUpdateTime = currentMillis;  // Update the last joystick update time
@@ -799,7 +938,6 @@ void readJoystick() {
   unsigned long currentMillis = millis();
   int xVal = analogRead(joyX);
   int yVal = analogRead(joyY);
-  bool buttonPressed = digitalRead(joySW) == LOW;
 
   // Deadzone threshold
   int deadzone = 300;
@@ -839,29 +977,18 @@ void readJoystick() {
     playerMoved = true;
   }
 
-
-  static bool lastButtonState = HIGH;  // Track the last state
-
-  if (buttonPressed && lastButtonState != buttonPressed) {
+  if (buttonPressed) {
     fireBullet(lastPlayerDX, lastPlayerDY);
-    tone(buzzerPin, 1000, 200);
+    buttonPressed = false;
   }
-  lastButtonState = buttonPressed;
-  // Fire bullet on button press
-  if (buttonPressed && lastButtonState != buttonPressed) {
-    // Call fireBullet() with the last known player direction
-    fireBullet(lastPlayerDX, lastPlayerDY);
-  }
-
-  lastButtonState = buttonPressed;  // Update last button state
 }
 
 // Global variables for animateFallingBlocks function
 int fallingBlockRow = matrixSize - 1;
 int fallingBlockCol = 0;
-int fallingBlockCurrentRow = 0; // Tracks the current falling position of the block
+int fallingBlockCurrentRow = 0;  // Tracks the current falling position of the block
 unsigned long lastBlockFallTime = 0;
-const long blockFallInterval = 15; // Interval at which each block falls
+const long blockFallInterval = 15;  // Interval at which each block falls
 
 void animateFallingBlocks() {
   unsigned long currentMillis = millis();
@@ -885,7 +1012,7 @@ void animateFallingBlocks() {
       // Check if the block has reached its final position
       if (fallingBlockCurrentRow > fallingBlockRow) {
         fallingBlockCol++;
-        fallingBlockCurrentRow = 0; // Reset for the next block
+        fallingBlockCurrentRow = 0;  // Reset for the next block
 
         // Move to the next column or row
         if (fallingBlockCol >= matrixSize) {
@@ -940,13 +1067,13 @@ int wonBlockCol = 0;
 unsigned long lastWonBlockTime = 0;
 
 
-unsigned long lastLedOffTime = 0; // Stores the last time an LED was turned off
-int lastLedX = -1;                // Stores the last x-coordinate of the LED that was lit
+unsigned long lastLedOffTime = 0;  // Stores the last time an LED was turned off
+int lastLedX = -1;                 // Stores the last x-coordinate of the LED that was lit
 
 
 // Adjusted intervals for a slower animation
-const long wonBlockInterval = 100; // Interval for each block in the winning animation
-const long ledOffInterval = 100;   // Time to keep each LED lit before turning off
+const long wonBlockInterval = 100;  // Interval for each block in the winning animation
+const long ledOffInterval = 100;    // Time to keep each LED lit before turning off
 
 void won() {
   unsigned long currentMillis = millis();
@@ -955,13 +1082,13 @@ void won() {
   if (wonBlockRow >= 0) {
     // Check if it's time to update the block animation
     if (currentMillis - lastWonBlockTime > wonBlockInterval) {
-      lastWonBlockTime = currentMillis; // Update the last time we changed the block
+      lastWonBlockTime = currentMillis;  // Update the last time we changed the block
 
       // Light up a random LED in the current row
       int x = random(matrixSize);
       lc.setLed(0, wonBlockRow, x, true);
       lastLedOffTime = currentMillis;  // Record the time when LED was turned on
-      lastLedX = x;  // Record the LED's x-coordinate
+      lastLedX = x;                    // Record the LED's x-coordinate
 
       // Prepare to move to the next row in the next iteration
       wonBlockRow--;
@@ -969,13 +1096,13 @@ void won() {
 
     // Check if it's time to turn off the LED
     if (currentMillis - lastLedOffTime > ledOffInterval) {
-      lc.setLed(0, wonBlockRow + 1, lastLedX, false); // Turn off the last LED lit
+      lc.setLed(0, wonBlockRow + 1, lastLedX, false);  // Turn off the last LED lit
     }
   } else {
     // Animation complete, change state
-    turnOffMatrix(); // Clear the matrix
+    turnOffMatrix();  // Clear the matrix
     currentState = FINAL;
-    wonBlockRow = matrixSize - 1; // Reset for the next win animation
+    wonBlockRow = matrixSize - 1;  // Reset for the next win animation
   }
 }
 
@@ -1111,41 +1238,36 @@ void handleSettingsInput() {
   // Read the joystick and button states
   int yValue = analogRead(joyY);
   int xValue = analogRead(joyX);
-  bool buttonPressed = !digitalRead(joySW);
 
   // Check if the button state has changed
-  if (buttonPressed != lastButtonState) {
-    lastButtonState = buttonPressed;
 
-    // Debounce logic for button press
-    if (buttonPressed && (currentMillis - lastButtonPressTime > debounceDelay)) {
-      lastButtonPressTime = currentMillis;
-      tone(buzzerPin, 1000,200);
-      if (!inAdjustmentMode) {
-        if (settingsMenuItem != settingsMenuSize - 1) {  // 'Back' is selected
-          inAdjustmentMode = true;
-          currentSetting = static_cast<Setting>(settingsMenuItem);
-        }else{
-          // Save settings to EEPROM
-          EEPROM.put(lcdBrightnessAddress, lcdBrightness);
-          EEPROM.put(matrixBrightnessAddress, matrixBrightness);
-          EEPROM.put(difficultyAddress, difficulty);
-          EEPROM.put(songIndexAddress, songIndex);
-          for (int i = 0; i < 5; i++) {
-            EEPROM.write(playerNameAddress + i, selectedChars[i]);
-          }
-          selectGameMapBasedOnDifficulty();
-          currentState = MENU;
-          updateMenu();
-          //delay(300);
-          return;
-        }
+
+  // Debounce logic for button press
+  if (buttonPressed) {
+    buttonPressed = false;
+    if (!inAdjustmentMode) {
+      if (settingsMenuItem != settingsMenuSize - 1) {  // 'Back' is selected
+        inAdjustmentMode = true;
+        currentSetting = static_cast<Setting>(settingsMenuItem);
       } else {
-        // Exit adjustment mode
-        inAdjustmentMode = false;
+        // Save settings to EEPROM
+        EEPROM.put(lcdBrightnessAddress, lcdBrightness);
+        EEPROM.put(matrixBrightnessAddress, matrixBrightness);
+        EEPROM.put(difficultyAddress, difficulty);
+        EEPROM.put(songIndexAddress, songIndex);
+        for (int i = 0; i < 5; i++) {
+          EEPROM.write(playerNameAddress + i, selectedChars[i]);
+        }
+        selectGameMapBasedOnDifficulty();
+        currentState = MENU;
+        updateMenu();
+        return;
       }
-      settingsMenu();  // Refresh the settings menu display
+    } else {
+      // Exit adjustment mode
+      inAdjustmentMode = false;
     }
+    settingsMenu();  // Refresh the settings menu display
   }
 
   // Handle joystick movement
@@ -1193,11 +1315,9 @@ int scoreDisplayIndex = 0;  // Global variable to track the score index
 void handleHighScoresInput() {
   unsigned long currentMillis = millis();
   int yValue = analogRead(joyY);
-  bool buttonPressed = !digitalRead(joySW);
 
-  if (buttonPressed && (currentMillis - lastButtonPressTime > debounceDelay)) {
-    lastButtonPressTime = currentMillis;
-    tone(buzzerPin,1000,200);
+  if (buttonPressed) {
+    buttonPressed = false;
     if (inViewingMode) {
       // Exit viewing mode
       inViewingMode = false;
@@ -1221,8 +1341,6 @@ void handleHighScoresInput() {
     }
   }
 
-  lastButtonState = buttonPressed;
-
   // Handle Joystick Movement for viewing mode
   if (inViewingMode && currentMillis - lastJoystickUpdateTime > joystickUpdateInterval) {
     lastJoystickUpdateTime = currentMillis;
@@ -1236,7 +1354,7 @@ void handleHighScoresInput() {
       scoreDisplayIndex = min(scoreDisplayIndex, topScoresCount - 2);
     }
 
-    displayTop3Scores(highScoresMenuItem);  // Refresh high score display
+    displayTop3Scores(highScoresMenuItem);
   }
 
   // Handle Joystick Movement for menu navigation
@@ -1254,17 +1372,6 @@ void handleHighScoresInput() {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
 void highScoresMenu() {
   lcd.clear();
   for (int i = 0; i < 2; i++) {
@@ -1277,31 +1384,44 @@ void highScoresMenu() {
   }
 }
 
+bool validScoresExist;
+
+
 
 void displayTop3Scores(int difficulty) {
   int* currentScores;
+  int nameAddress;
   switch (difficulty) {
     case 0:
       currentScores = easyHighScores;
+      nameAddress = easyNameAddress;
       break;
     case 1:
       currentScores = mediumHighScores;
+      nameAddress = mediumNameAddress;
       break;
     case 2:
       currentScores = hardHighScores;
+      nameAddress = hardNameAddress;
       break;
   }
 
-  // Display on LCD
   lcd.clear();
   lcd.print("Top Scores:");
 
-  // Display scores based on the scoreDisplayIndex
   for (int i = 0; i < 2; i++) {
-    int scoreIndex = scoreDisplayIndex + i;
+    int scoreIndex = scoreDisplayIndex + i - 1;
     if (scoreIndex < topScoresCount) {
+      // Read and display the name
+      char playerName[nameLength + 1];
+      for (int j = 0; j < nameLength; j++) {
+        playerName[j] = EEPROM.read(nameAddress + scoreIndex * nameLength + j);
+      }
+      playerName[nameLength] = '\0';  // Null terminator
+
+      // Display on LCD
       lcd.setCursor(0, i + 1);
-      lcd.print(scoreIndex);
+      lcd.print(playerName);
       lcd.print(": ");
       lcd.print(currentScores[scoreIndex]);
     }
@@ -1311,7 +1431,9 @@ void displayTop3Scores(int difficulty) {
 
 
 
+
 int readHighScoreFromEEPROM(int address) {
-  int highScore = EEPROM.read(address);
+  int highScore;
+  EEPROM.get(address, highScore);
   return highScore;
 }
